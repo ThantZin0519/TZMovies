@@ -1,0 +1,27 @@
+{
+  "name": "dailyreader",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --mode development",
+    "build": "vite build",
+    "preview": "vite preview",
+    "type-check": "tsc"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.4.0",
+    "axios": "^1.6.2",
+    "bootstrap": "^5.3.0",
+    "jquery": "^3.7.0",
+    "swiper": "^11.0.5",
+    "vue": "^3.2.47",
+    "vue-router": "^4.2.2",
+    "vuex": "^4.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.1.0",
+    "typescript": "^5.1.6",
+    "vite": "^4.3.9"
+  }
+}
