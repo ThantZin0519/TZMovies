@@ -82,7 +82,7 @@
                 </swiper>
                 <h2>Recommandations</h2>
                 <!-- recommandation start  -->
-                <div v-if="recommandations.length == 0"> <h2 class="text-center">NO RECOMMANDATION MOVIES</h2></div>
+                <div v-if="recommandations.length === 0"> <h2 class="text-center">NO RECOMMANDATION MOVIES</h2></div>
                 <div v-else class="row white">
                     <div v-for="(recommand, index) in recommandations" :key="index"
                         class="col-6 col-sm-6 col-md-4 col-lg-2">

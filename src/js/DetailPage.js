@@ -80,11 +80,16 @@ export default {
       axios.get(`${this.$store.state.url}/movie/${this.movie_id}/recommendations?api_key=${this.$store.state.api_key}&page=${this.page}`)
         .then(res => res.data)
         .then(data => {
-          this.total_page = data.total_pages;     
-            const newMovies = data.results;
-            const uniqueMovieIds = new Set(this.recommandations.map(movie => movie.id));        
-            const filteredNewMovies = newMovies.filter(movie => !uniqueMovieIds.has(movie.id));        
-            this.recommandations = [...this.recommandations, ...filteredNewMovies];
+          this.total_page = data.total_pages;
+            if (this.page >= this.total_page) {
+              this.loadingStatus = false;
+            }        
+          const newMovies = data.results;
+          if (this.recommandations.length == 0) {
+            this.recommandations =  [...this.recommandations, ...newMovies];
+          } else {
+            this.recommandations =  [...this.recommandations, ...newMovies.slice(1)];
+          }
         })
         .catch(error => {
           console.error(error);
@@ -103,9 +108,6 @@ export default {
     const isLoadingMore = this.loadingStatus;
     if (bottomOfWindow && isLoadingMore) {
       this.page++;
-      if (this.page > this.total_page) {
-        this.loadingStatus = false;
-      }
       this.getRecommandations();
     }
     },
@@ -116,7 +118,7 @@ export default {
           this.loading= true;
           this.movie= {};
           this.casts= {};
-          this.recommandations = {};
+          this.recommandations = [];
           this.page= 1;
           this.movie_id= null;
           this.date_slice= null;
