@@ -21,13 +21,15 @@ export default {
     return {
       slide_per_view: 2,
       loading: true,
+      loadingStatus: true,
       movie: {},
       casts: {},
-      recommandations : {},
+      recommandations : [],
       page: 1,
       movie_id: null,
       date_slice: null,
-      cast_id :null,
+      cast_id: null,
+      total_page:null,
     };
   },
   methods: {
@@ -53,8 +55,6 @@ export default {
       }
     },
     getMovies() {
-      // const screenWidth = window.innerWidth;
-
       axios.get(`${this.$store.state.url}/movie/${this.movie_id}?api_key=${this.$store.state.api_key}`)
         .then(res => res.data)
         .then(data => {
@@ -77,10 +77,14 @@ export default {
         });
     },
     getRecommandations() {
-      axios.get(`${this.$store.state.url}/movie/${this.movie_id}/recommendations?api_key=${this.$store.state.api_key}`)
+      axios.get(`${this.$store.state.url}/movie/${this.movie_id}/recommendations?api_key=${this.$store.state.api_key}&page=${this.page}`)
         .then(res => res.data)
         .then(data => {
-          this.recommandations = data.results;
+          this.total_page = data.total_pages;     
+            const newMovies = data.results;
+            const uniqueMovieIds = new Set(this.recommandations.map(movie => movie.id));        
+            const filteredNewMovies = newMovies.filter(movie => !uniqueMovieIds.has(movie.id));        
+            this.recommandations = [...this.recommandations, ...filteredNewMovies];
         })
         .catch(error => {
           console.error(error);
@@ -88,18 +92,22 @@ export default {
     },
      toDetail(id) {
        this.movie_id = id;
-      //  alert(this.movie_id);
        router.push({ path: '/DetailPage', query: { movie_id: this.movie_id } });
-      // setInterval('window.location.reload()', 50);
     },
     toCastDetail(id) {
       this.cast_id = id;
-     //  alert(this.cast_id);
       router.push({ path: '/CastDetailPage', query: { cast_id: this.cast_id } });
-     // setInterval('window.location.reload()', 50);
     },
-    useSwiper() {
-      
+    handleScroll() {
+    const bottomOfWindow = window.innerHeight + window.scrollY >= document.body.offsetHeight - 0;
+    const isLoadingMore = this.loadingStatus;
+    if (bottomOfWindow && isLoadingMore) {
+      this.page++;
+      if (this.page > this.total_page) {
+        this.loadingStatus = false;
+      }
+      this.getRecommandations();
+    }
     },
   },
     watch: {
@@ -125,11 +133,11 @@ export default {
     },
     setup() {
       const onSwiper = (swiper) => {
-        console.log(swiper);
+        // console.log(swiper);
         // alert("swiper");
       };
       const onSlideChange = () => {
-        console.log('slide change');
+        // console.log('slide change');
       };
       const useswiper = useSwiper();
 
@@ -152,6 +160,6 @@ export default {
     this.getRecommandations();
     this.getScreenWidth();
     window.addEventListener('resize', this.getScreenWidth);
-
+    window.addEventListener('scroll', this.handleScroll);
   },
 };

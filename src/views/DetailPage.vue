@@ -82,15 +82,16 @@
                 </swiper>
                 <h2>Recommandations</h2>
                 <!-- recommandation start  -->
-                <div class="row white">
+                <div v-if="recommandations.length == 0"> <h2 class="text-center">NO RECOMMANDATION MOVIES</h2></div>
+                <div v-else class="row white">
                     <div v-for="(recommand, index) in recommandations" :key="index"
                         class="col-6 col-sm-6 col-md-4 col-lg-2">
                         <div class="card" @click="toDetail(recommand.id)">
                             <img :src="`https://image.tmdb.org/t/p/w200${recommand.poster_path}`" class="card-img-top"
                                 alt="Movie Poster">
                             <div class="card-body">
-                                      <h5 v-if="movie.title.length < 24" class="card-title">{{ movie.title }}</h5>
-                                    <h5 v-else class="card-title">{{ movie.title.slice(0, 23) }}...</h5>
+                                      <h5 v-if="recommand.title.length < 24" class="card-title">{{ recommand.title }}</h5>
+                                    <h5 v-else class="card-title">{{ recommand.title.slice(0, 23) }}...</h5>
                                 <p class="card-text">{{ recommand.release_date }}</p>
                                 <p class="card-text">{{ recommand.vote_average }}</p>
                             </div>
@@ -98,6 +99,13 @@
                     </div>
                 </div>
                 <!-- recommandation end  -->
+                      <!-- Start loading indicator -->
+                    <div class="d-flex justify-content-center" v-if="loadingStatus">
+                        <div class="spinner-border white" role="status">
+                            <span class="sr-only ">Loading...</span>
+                        </div>
+                    </div>
+                    <!-- End loading indicator -->
             </div>
 
         </div>
