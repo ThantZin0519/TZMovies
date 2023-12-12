@@ -63,9 +63,10 @@
             </div>
             <div class="detail-others">
                 <h2>Casts</h2>
+                    <!-- navigation -->
                 <swiper 
                     :modules="modules"
-                    navigation
+                    
                     :slides-per-view="slide_per_view" :space-between="50" @swiper="onSwiper"
                     @slideChange="onSlideChange" :autoplay="true">
                     <swiper-slide v-for="(cast, index) in casts" :key="index">
