@@ -87,12 +87,14 @@ export default {
     flex-direction: row;
     justify-content: space-between;
     padding: 20px 10px 0px 10px;
-    background-color: #ea5a88;
+    background-color: #2d333a;
     position: fixed;
     top: 0;
     z-index: 1000;
 }
-
+.wrapper {
+    background-color: #2d333a;
+}
 .for-main-content {
     display: flex;
     padding-top: 12vh;
@@ -121,7 +123,7 @@ export default {
 
 .for-sidebar a {
     text-decoration: none;
-    color: #333;
+    color: white;
     /* Link color */
     display: block;
     /* Other styles */
@@ -130,6 +132,7 @@ export default {
 /* side end  */
 .side-navbar {
     position: fixed;
+    background-color: #2d333a;
 }
 
 @media (max-width: 768px) {

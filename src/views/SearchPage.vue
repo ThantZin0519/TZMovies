@@ -11,8 +11,8 @@
                         <img :src="`https://image.tmdb.org/t/p/w200${movie.poster_path}`" class="card-img-top"
                             alt="Movie Poster">
                         <div class="card-body">
-                            <h5 v-if="movie.title.length < 15" class="card-title">{{ movie.title }}</h5>
-                            <h5 v-else class="card-title">{{ movie.title.slice(0, 12) }}...</h5>
+                              <h5 v-if="movie.title.length < 24" class="card-title">{{ movie.title }}</h5>
+                              <h5 v-else class="card-title">{{ movie.title.slice(0, 23) }}...</h5>
                             <p class="card-text">{{ movie.release_date }}</p>
                             <p class="card-text">{{ movie.vote_average }}</p>
                         </div>
@@ -77,7 +77,7 @@
     object-fit: cover;
 }
     .card-title{
-        font-size: 1em;
+        font-size: 14px;
     }
     .card-body{
         height: 19dvh;

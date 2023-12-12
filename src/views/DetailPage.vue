@@ -20,18 +20,18 @@
                 <div class="col-12 col-sm12 col-md-8 col-lg-8">
                     <!-- detail start  -->
                     <div class="movie-details">
-                        <h2>{{ movie.title }} ( {{ date_slice }} )</h2>
-                        <div class="overview">
+                        <h2 class="white">{{ movie.title }} ( {{ date_slice }} )</h2>
+                        <div class="overview white">
                             <p>{{ movie.overview }}</p>
                         </div>
                         <div class="additional-details">
-                            <div class="genres">
-                                <strong>Genres:</strong>
+                            <div class="genres ">
+                                <strong class="white">Genres:</strong>
                                 <ul>
                                     <li v-for="genre in movie.genres" :key="genre.id">{{ genre.name }}</li>
                                 </ul>
                             </div>
-                            <div class="production-companies">
+                            <div class="production-companies white">
                                 <strong>Production Companies:</strong>
                                 <ul>
                                     <li v-for="company in movie.production_companies" :key="company.id">
@@ -42,7 +42,7 @@
                                                     :alt="company.name + ' Logo'" class="company-logo"
                                                     style="width:40px;height:40px;">
                                             </div>
-                                            <div class="col-10">
+                                            <div class="col-10 white">
                                                 {{ company.name }} ({{ company.origin_country }})
                                             </div>
                                         </div>
@@ -50,7 +50,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="release-details">
+                            <div class="release-details white">
                                 <strong>Release Date:</strong> {{ movie.release_date }}
                                 <br>
                                 <strong>Runtime:</strong> {{ movie.runtime }} minutes
@@ -61,7 +61,7 @@
                     <!-- detail end  -->
                 </div>
             </div>
-            <div class="detail-others">
+            <div class="detail-others white">
                 <h2>Casts</h2>
                     <!-- navigation -->
                 <swiper 
@@ -82,15 +82,15 @@
                 </swiper>
                 <h2>Recommandations</h2>
                 <!-- recommandation start  -->
-                <div class="row">
+                <div class="row white">
                     <div v-for="(recommand, index) in recommandations" :key="index"
                         class="col-6 col-sm-6 col-md-4 col-lg-2">
                         <div class="card" @click="toDetail(recommand.id)">
                             <img :src="`https://image.tmdb.org/t/p/w200${recommand.poster_path}`" class="card-img-top"
                                 alt="Movie Poster">
                             <div class="card-body">
-                                <h5 v-if="recommand.title.length < 15" class="card-title">{{ recommand.title }}</h5>
-                                <h5 v-else class="card-title">{{ recommand.title.slice(0, 12) }}...</h5>
+                                      <h5 v-if="movie.title.length < 24" class="card-title">{{ movie.title }}</h5>
+                                    <h5 v-else class="card-title">{{ movie.title.slice(0, 23) }}...</h5>
                                 <p class="card-text">{{ recommand.release_date }}</p>
                                 <p class="card-text">{{ recommand.vote_average }}</p>
                             </div>
@@ -110,7 +110,9 @@
 .loading-class {
     height: 100vh;
 }
-
+.white{
+    color: white;
+}
 .side-nav {
     display: flex;
 }
@@ -269,7 +271,7 @@ movie-poster img {
     object-fit: cover;
 }
 .card-title{
-    font-size: 1em;
+    font-size: 14px;
 }
 .card-body{
     height: 19dvh;
