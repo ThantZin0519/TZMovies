@@ -104,7 +104,7 @@ export default {
       router.push({ path: '/CastDetailPage', query: { cast_id: this.cast_id } });
     },
     handleScroll() {
-    const bottomOfWindow = window.innerHeight + window.scrollY >= document.body.offsetHeight - 0;
+    const bottomOfWindow = window.innerHeight + window.scrollY >= document.body.offsetHeight - 10;
     const isLoadingMore = this.loadingStatus;
     if (bottomOfWindow && isLoadingMore) {
       this.page++;

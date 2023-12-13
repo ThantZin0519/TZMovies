@@ -47,34 +47,23 @@
 }
 
 .card-img-top {
-    height: 300px;
+    height: 250px;
     object-fit: cover;
 }
 .card-title{
     font-size: 14px;
 }
 .card-body{
-    height: 19dvh;
+    height: 130px;
+    background-color: black;
+    color: white;
 }
-/* .rating {
-    position: relative;
-    display: inline-block;
-    overflow: hidden;
-    vertical-align: middle;
-    white-space: nowrap;
-    width: 75px;
-    height: 15px;
-    background: url('https://via.placeholder.com/75x15') no-repeat 0 0;
-} */
-
-/* .stars {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    background: url('https://via.placeholder.com/75x15') no-repeat 0 -15px;
-} */
 .loading-class{
     height: 100vh;
+}
+@media (max-width: 475px) {
+    .card-img-top {
+        height: 180px;
+    }
 }
 </style>

@@ -41,7 +41,7 @@ export default {
         });
     },
     handleScroll() {
-      const bottomOfWindow = window.innerHeight + window.scrollY >= document.body.offsetHeight - 0;
+      const bottomOfWindow = window.innerHeight + window.scrollY >= document.body.offsetHeight - 10;
       const isLoadingMore = this.loadingStatus;
       if (bottomOfWindow && isLoadingMore) {
         this.loadingStatus = true;

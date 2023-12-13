@@ -31,24 +31,26 @@
                                     <li v-for="genre in movie.genres" :key="genre.id">{{ genre.name }}</li>
                                 </ul>
                             </div>
-                            <div class="production-companies white">
+                            <div class="productions production-companies white">
                                 <strong>Production Companies:</strong>
+                                <!-- original start  -->
                                 <ul>
                                     <li v-for="company in movie.production_companies" :key="company.id">
                                         <div class="row company-loop">
-                                            <div class="col-2">
+                                            <div class="col-3">
                                                 <img v-if="company.logo_path"
                                                     :src="'https://image.tmdb.org/t/p/w200' + company.logo_path"
                                                     :alt="company.name + ' Logo'" class="company-logo"
                                                     style="width:40px;height:40px;">
                                             </div>
-                                            <div class="col-10 white">
+                                            <div class="col-9 ">
                                                 {{ company.name }} ({{ company.origin_country }})
                                             </div>
                                         </div>
 
                                     </li>
                                 </ul>
+                                original end 
                             </div>
                             <div class="release-details white">
                                 <strong>Release Date:</strong> {{ movie.release_date }}
@@ -164,8 +166,23 @@
     border-radius: 4px;
     font-size: 14px;
 }
+.productions ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 10px;
+}
 
-.production-companies ul {
+.productions li {
+    display: inline-block;
+    margin-right: 10px;
+    /* background-color: #f0f0f0; */
+    /*padding: 4px 8px; */
+    border-radius: 4px;
+    font-size: 12px;
+    color: white;
+}
+
+/* .production-companies ul {
     list-style-type: none;
     padding: 0;
     margin-bottom: 10px;
@@ -173,7 +190,7 @@
 
 .production-companies li {
     margin-bottom: 5px;
-}
+} */
 
 .release-details {
     font-size: 14px;
@@ -212,7 +229,7 @@
     width: 85%;
     position: absolute;
     top: 0;
-    padding-top: 30vh;
+    padding-top: 20vh;
     z-index: 20;
 }
 
@@ -275,14 +292,24 @@ movie-poster img {
 }
 
 .card-img-top {
-    height: 300px;
+    height: 250px;
     object-fit: cover;
 }
 .card-title{
     font-size: 14px;
 }
 .card-body{
-    height: 19dvh;
+    height: 130px;
+    background-color: black;
+    color: white;
+}
+.loading-class{
+    height: 100vh;
+}
+@media (max-width: 475px) {
+    .card-img-top {
+        height: 180px;
+    }
 }
 /* recommandation end  */
 @media (max-width: 768px) {

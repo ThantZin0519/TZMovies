@@ -1,6 +1,6 @@
 <template>
     <side-nav>
-        <div v-show="loading">            
+        <div v-show="loading" class="loading-class">            
             <loading-comp></loading-comp>
         </div>
         <div v-show="!loading">
@@ -37,14 +37,24 @@
     transform: scale(1.02);
 }
 
-.card-img-top {
-    height: 300px;
-    object-fit: cover;
-}
+    .card-img-top {
+        height: 250px;
+        object-fit: cover;
+    }
     .card-title{
         font-size: 14px;
     }
     .card-body{
-        height: 19dvh;
+        height: 130px;
+        background-color: black;
+        color: white;
+    }
+    .loading-class{
+        height: 100vh;
+    }
+    @media (max-width: 475px) {
+        .card-img-top {
+            height: 180px;
+        }
     }
 </style>
