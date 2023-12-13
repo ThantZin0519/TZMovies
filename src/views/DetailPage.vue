@@ -19,6 +19,26 @@
                 </div>
                 <div class="col-12 col-sm12 col-md-8 col-lg-8">
                     <!-- detail start  -->
+                        <!-- circular progress start  -->
+                        <div class="row ml-1">
+                                 <div class="col-1 mt-2">
+                                    <v-progress-circular
+                                    interminate
+                                        :size="55"
+                                        :width="5"
+                                        :model-value="movie.vote_average * 10"
+                                        :color='movie.vote_average >= 7 ? "green" : "yellow"'
+                                       >
+                                        <span style="color:white">
+                                              {{ typeof movie.vote_average === 'number' ? movie.vote_average.toFixed(1) : '' }}
+                                        </span>
+                                    </v-progress-circular>
+                                 </div>
+                                 <div class="col-11" style="color:white">
+                                    <h3> User<br>Score</h3>
+                                </div>  
+                        </div>                         
+                        <!-- circular progress end  -->
                     <div class="movie-details">
                         <h2 class="white">{{ movie.title }} ( {{ date_slice }} )</h2>
                         <div class="overview white">
@@ -92,10 +112,21 @@
                             <img :src="`https://image.tmdb.org/t/p/w200${recommand.poster_path}`" class="card-img-top"
                                 alt="Movie Poster">
                             <div class="card-body">
-                                      <h5 v-if="recommand.title.length < 24" class="card-title">{{ recommand.title }}</h5>
-                                    <h5 v-else class="card-title">{{ recommand.title.slice(0, 23) }}...</h5>
-                                <p class="card-text">{{ recommand.release_date }}</p>
-                                <p class="card-text">{{ recommand.vote_average }}</p>
+                            <!-- circular progress start  -->
+                            <div class="circular-progress">
+                            <v-progress-circular
+                                :size="35"
+                                :width="5"
+                                :model-value="recommand.vote_average * 10"
+                                :color='recommand.vote_average >= 7 ? "green" : "yellow"'
+                                >
+                                <span style="color:white">{{ recommand.vote_average.toFixed(1) }}</span>
+                            </v-progress-circular>
+                            </div>                                  
+                        <!-- circular progress end  -->
+                            <h5 v-if="recommand.title.length < 24" class="card-title mt-3">{{ recommand.title }}</h5>
+                            <h5 v-else class="card-title mt-3">{{ recommand.title.slice(0, 23) }}...</h5>
+                            <p class="card-text">{{ recommand.release_date }}</p>
                             </div>
                         </div>
                     </div>
@@ -305,6 +336,10 @@ movie-poster img {
 }
 .loading-class{
     height: 100vh;
+}
+.circular-progress{
+    position: absolute;
+    margin-top: -4.5vh;
 }
 @media (max-width: 475px) {
     .card-img-top {

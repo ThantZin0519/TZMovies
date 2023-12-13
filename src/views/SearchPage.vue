@@ -11,10 +11,22 @@
                         <img :src="`https://image.tmdb.org/t/p/w200${movie.poster_path}`" class="card-img-top"
                             alt="Movie Poster">
                         <div class="card-body">
-                              <h5 v-if="movie.title.length < 24" class="card-title">{{ movie.title }}</h5>
-                              <h5 v-else class="card-title">{{ movie.title.slice(0, 23) }}...</h5>
+                              <!-- circular progress start  -->
+                                <div class="circular-progress">
+                                <v-progress-circular
+                                interminate
+                                    :size="35"
+                                    :width="5"
+                                    :model-value="movie.vote_average * 10"
+                                    :color='movie.vote_average >= 7 ? "green" : "yellow"'
+                                    >
+                                    <span style="color:white">{{ movie.vote_average.toFixed(1) }}</span>
+                                </v-progress-circular>
+                                </div>                                  
+                            <!-- circular progress end  -->
+                              <h5 v-if="movie.title.length < 24" class="card-title mt-3">{{ movie.title }}</h5>
+                              <h5 v-else class="card-title mt-3">{{ movie.title.slice(0, 23) }}...</h5>
                             <p class="card-text">{{ movie.release_date }}</p>
-                            <p class="card-text">{{ movie.vote_average }}</p>
                         </div>
                     </div>
                     <!-- movie end -->
@@ -86,6 +98,10 @@
   }
   .loading-class{
       height: 100vh;
+  }
+  .circular-progress{
+      position: absolute;
+      margin-top: -4.5vh;
   }
   @media (max-width: 475px) {
       .card-img-top {

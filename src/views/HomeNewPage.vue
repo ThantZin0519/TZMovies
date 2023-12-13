@@ -22,8 +22,7 @@
                                        >
                                         <span style="color:white">{{ movie.vote_average }}</span>
                                     </v-progress-circular>
-                                 </div>
-                                  
+                                 </div>                                  
                                 <!-- circular progress end  -->
                             <h5 v-if="movie.title.length < 24" class="card-title mt-3">{{ movie.title }}</h5>
                             <h5 v-else class="card-title mt-3">{{ movie.title.slice(0, 23) }}...</h5>
