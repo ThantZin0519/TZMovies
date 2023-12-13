@@ -3,6 +3,8 @@
     <div class="spinner"></div>
     <img src="../../../public/TZ.svg" alt="Loading Spinner" class="svg-image">
   </div>
+  <!-- circle progress start  -->
+  <!-- circle progress end  -->
 </template>
 
 <script>
@@ -60,4 +62,7 @@ export default {
   100% {
     transform: rotate(360deg);
   }
-}</style>
+}
+/* circle progress start  */
+/* circle progress end  */
+</style>
