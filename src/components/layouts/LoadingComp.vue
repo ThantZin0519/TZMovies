@@ -4,6 +4,9 @@
     <img src="../../../public/TZ.svg" alt="Loading Spinner" class="svg-image">
   </div>
   <!-- circle progress start  -->
+  <!-- <div>
+    hello circular/
+  </div> -->
   <!-- circle progress end  -->
 </template>
 
