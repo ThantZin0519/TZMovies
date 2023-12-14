@@ -14,7 +14,17 @@ export default {
       movies_obj: [],
       page: 1,
       person_id: null,
-      
+      cast_obj: {},
+      social_obj: {},
+      links: {
+        fb_link: null,
+        twit_link: null,
+        insta_link: null,
+      },
+      expanded: false,
+      showButton: false,
+      truncatedBiography: '',
+      fullBiography: '',
     };
   },
   methods: {
@@ -30,6 +40,41 @@ export default {
           console.error(error);
         });
     },
+      getCastDetail() {
+      axios.get(`${this.$store.state.url}person/${this.person_id}?api_key=${this.$store.state.api_key}`)
+        .then(res => res.data)
+        .then(data => {
+          this.cast_obj = data;
+          // Check if the biography text exceeds a certain length to determine if the "Show More" button is necessary
+          this.showButton = this.cast_obj.biography.length > 500;
+
+          // Set initial content to show
+          this.truncatedBiography = this.cast_obj.biography.substring(0, 500); // Initial character limit
+          this.fullBiography = this.cast_obj.biography;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
+      getCastSocial() {
+      axios.get(`${this.$store.state.url}person/${this.person_id}/external_ids?api_key=${this.$store.state.api_key}`)
+        .then(res => res.data)
+        .then(data => {
+          this.social_obj = data;
+          this.links.fb_link = "https://www.facebook.com/" + this.social_obj.facebook_id;
+          this.links.twit_link = "https://www.twitter.com/" + this.social_obj.twitter_id;
+          this.links.insta_link = "https://www.instagram.com/" + this.social_obj.instagram_id;
+
+       
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
+    toggleExpanded() {
+      // alert(this.expanded);
+      this.expanded = !this.expanded;
+    },
     toDetail(id) {
         this.movie_id = id;
         router.push({ path: '/DetailPage', query: { movie_id: this.movie_id } })
@@ -37,7 +82,9 @@ export default {
   },
     mounted() {
     this.person_id = this.$route.query.cast_id;
-    this.getMovies();
+      this.getMovies();
+      this.getCastDetail();
+      this.getCastSocial();
     window.scrollTo({
       top: 0,
       behavior: 'smooth' // This will create a smooth scroll effect, if supported
