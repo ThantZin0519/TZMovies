@@ -26,7 +26,7 @@
                                     interminate
                                         :size="55"
                                         :width="5"
-                                        :model-value="movie.vote_average * 10"
+                                        :model-value="vote_average"
                                         :color='movie.vote_average >= 7 ? "green" : "yellow"'
                                        >
                                         <span style="color:white">

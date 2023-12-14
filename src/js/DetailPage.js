@@ -29,7 +29,8 @@ export default {
       movie_id: null,
       date_slice: null,
       cast_id: null,
-      total_page:null,
+      total_page: null,
+      vote_average:100,
     };
   },
   methods: {
@@ -61,6 +62,9 @@ export default {
           this.movie = data;
           this.date_slice = this.movie.release_date.slice(0, 4);
           this.loading = false;
+          setTimeout(() => {
+            this.vote_average = this.movie.vote_average * 10;
+          }, 50);
         })
         .catch(error => {
           console.error(error);
