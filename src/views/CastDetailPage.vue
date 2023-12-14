@@ -20,7 +20,7 @@
                                 :model-value="movie.vote_average * 10"
                                 :color='movie.vote_average >= 7 ? "green" : "yellow"'
                                 >
-                                <span style="color:white">{{ movie.vote_average }}</span>
+                                <span style="color:white">{{ movie.vote_average.toFixed(1) }}</span>
                             </v-progress-circular>
                             </div>                                  
                         <!-- circular progress end  -->

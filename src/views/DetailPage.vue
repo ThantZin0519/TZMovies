@@ -20,8 +20,8 @@
                 <div class="col-12 col-sm12 col-md-8 col-lg-8">
                     <!-- detail start  -->
                         <!-- circular progress start  -->
-                        <div class="row ml-1">
-                                 <div class="col-1 mt-2">
+                        <div class="d-flex">
+                                 <div class="ml-3 mr-3 mt-1">
                                     <v-progress-circular
                                     interminate
                                         :size="55"
@@ -34,7 +34,7 @@
                                         </span>
                                     </v-progress-circular>
                                  </div>
-                                 <div class="col-11" style="color:white">
+                                 <div class="" style="color:white">
                                     <h3> User<br>Score</h3>
                                 </div>  
                         </div>                         
