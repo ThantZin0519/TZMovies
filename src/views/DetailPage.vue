@@ -123,11 +123,11 @@
                                 <span style="color:white">{{ recommand.vote_average.toFixed(1) }}</span>
                             </v-progress-circular>
                             </div>                                  
-                        <!-- circular progress end  -->
-                            <h5 v-if="recommand.title.length < 24" class="card-title mt-3">{{ recommand.title }}</h5>
-                            <h5 v-else class="card-title mt-3">{{ recommand.title.slice(0, 23) }}...</h5>
-                            <p class="card-text">{{ recommand.release_date }}</p>
-                            </div>
+                                <!-- circular progress end  -->
+                                    <h5 v-if="recommand.title.length < 45" class="card-title mt-3">{{ recommand.title }}</h5>
+                                    <h5 v-else class="card-title mt-3">{{ recommand.title.slice(0, 44) }}...</h5>
+                                    <p class="card-text" >{{ recommand.release_date }}</p>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -330,9 +330,12 @@ movie-poster img {
     font-size: 14px;
 }
 .card-body{
-    height: 130px;
+    height: 110px;
     background-color: black;
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .loading-class{
     height: 100vh;

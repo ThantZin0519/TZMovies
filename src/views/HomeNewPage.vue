@@ -7,7 +7,10 @@
             <div class="row">
                 <div v-for="(movie, index) in movies_obj" :key="index" class="col-6 col-sm-6 col-md-4 col-lg-2">
                     <!-- movie start -->
-                    <div class="card" @click="toDetail(movie.id)">
+                    <div class="card"  @click="toDetail(movie.id)">
+                        <!-- tooltip start  -->
+                        
+                        <!-- tooltip end  -->
                         <img :src="`https://image.tmdb.org/t/p/w200${movie.poster_path}`" class="card-img-top" alt="Movie Poster">
                             
                         <div class="card-body">
@@ -18,16 +21,15 @@
                                         :size="35"
                                         :width="5"
                                         :model-value="movie.vote_average * 10"
-                                        :color='movie.vote_average >= 7 ? "green" : "yellow"'
+                                        :color='movie.vote_average >= 7 ? "#21D07A" : "yellow"'
                                        >
                                         <span style="color:white">{{ movie.vote_average }}</span>
                                     </v-progress-circular>
                                  </div>                                  
                                 <!-- circular progress end  -->
-                            <h5 v-if="movie.title.length < 24" class="card-title mt-3">{{ movie.title }}</h5>
-                            <h5 v-else class="card-title mt-3">{{ movie.title.slice(0, 23) }}...</h5>
-                            <p class="card-text">{{ movie.release_date }}</p>
-                       
+                            <h5 v-if="movie.title.length < 45" class="card-title mt-3">{{ movie.title }}</h5>
+                            <h5 v-else class="card-title mt-3">{{ movie.title.slice(0, 44) }}...</h5>
+                            <p class="card-text" >{{ movie.release_date }}</p>
                         </div>
                     </div>
                     <!-- movie end -->
@@ -40,6 +42,26 @@
                 </div>
             </div>
             <!-- End loading indicator -->
+                <!-- test start  -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                      <div class="modal-content bg-black" style="color:white;">
+                        <!-- <div class="modal-header table-success">
+                          <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color:white">Sending Confirmation</h1>
+                          <button type="button" id="closeBtn" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> -->
+                        <div class="modal-body">
+                         <div >
+                            <h1>Hello , {{ movie_id }}</h1>
+                         </div>
+                      </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                <!-- test end  -->
         </div>
     </side-nav>
 </template>
@@ -68,9 +90,12 @@
     font-size: 14px;
 }
 .card-body{
-    height: 130px;
+    height: 110px;
     background-color: black;
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .loading-class{
     height: 100vh;

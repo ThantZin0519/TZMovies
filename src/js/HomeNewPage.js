@@ -52,6 +52,14 @@ export default {
       toDetail(id) {
         this.movie_id = id;
         router.push({ path: '/DetailPage', query: { movie_id: this.movie_id } })
+    },
+     showTooltip() {
+      // Assuming 'movie.overview' contains the description of the movie
+      this.$refs.tooltip.$refs.content.innerHTML = this.movie.overview;
+      this.$refs.tooltip.isActive = true;
+    },
+    hideTooltip() {
+      this.$refs.tooltip.isActive = false;
     }
   },
   mounted() {

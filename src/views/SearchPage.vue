@@ -23,10 +23,10 @@
                                     <span style="color:white">{{ movie.vote_average.toFixed(1) }}</span>
                                 </v-progress-circular>
                                 </div>                                  
-                            <!-- circular progress end  -->
-                              <h5 v-if="movie.title.length < 24" class="card-title mt-3">{{ movie.title }}</h5>
-                              <h5 v-else class="card-title mt-3">{{ movie.title.slice(0, 23) }}...</h5>
-                            <p class="card-text">{{ movie.release_date }}</p>
+                        <!-- circular progress end  -->
+                            <h5 v-if="movie.title.length < 45" class="card-title mt-3">{{ movie.title }}</h5>
+                            <h5 v-else class="card-title mt-3">{{ movie.title.slice(0, 44) }}...</h5>
+                            <p class="card-text" >{{ movie.release_date }}</p>
                         </div>
                     </div>
                     <!-- movie end -->
@@ -38,13 +38,13 @@
                       <ul class="pagination">
                         <li class="page-item" :class="{ disabled: page === 1 }">
                           <a class="page-link" href="#" aria-label="First" @click="goToFirstPage">
-                            First
+                               <span aria-hidden="true">&laquo;</span>
                           </a>
                         </li>
 
                         <li class="page-item" :class="{ disabled: page === 1 }">
                           <a class="page-link" href="#" aria-label="Previous" @click="prevPage">
-                            <span aria-hidden="true">&laquo;</span>
+                           prev
                           </a>
                         </li>
 
@@ -54,14 +54,14 @@
 
                         <li class="page-item" :class="{ disabled: page === totalPages }">
                           <a class="page-link" href="#" aria-label="Next" @click="nextPage">
-                            <span aria-hidden="true">&raquo;</span>
+                           next
                           </a>
                         </li>
 
                         <li class="page-item" :class="{ disabled: page === totalPages }">
                           <a class="page-link" href="#" aria-label="Last" @click="goToLastPage">
-                            Last
-                          </a>
+                            <span aria-hidden="true">&raquo;</span>
+                            </a>
                         </li>
                       </ul>
                     </nav>
@@ -92,9 +92,12 @@
       font-size: 14px;
   }
   .card-body{
-      height: 130px;
+      height: 110px;
       background-color: black;
       color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
   }
   .loading-class{
       height: 100vh;
