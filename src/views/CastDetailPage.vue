@@ -11,18 +11,21 @@
                         <img :src="`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${cast_obj.profile_path}`" class="person-img" alt="">
                     </div>
                     <div class="social d-flex justify-content-evenly">
-                        <span>
-                            <a :href="links.fb_link" target="_blank"><span class="facebook"><i class="fa-brands fa-facebook" style="font-size: 2.5em;"></i></span></a>
+                        <span v-show="links.fb_link != null">
+                            <a :href="links.fb_link" title="Facebook" target="_blank"><span class="facebook"><i class="fa-brands fa-facebook" style="font-size: 2.5em;"></i></span></a>
                         </span>
-                        <span>
-                            <a :href="links.twit_link" target="_blank"><span class="twitter"><i class="fa-brands fa-square-twitter" style="font-size: 2.5em;"></i></span></a>
+                        <span v-show="links.twit_link != null">
+                            <a :href="links.twit_link" title="Twitter" target="_blank"><span class="twitter"><i class="fa-brands fa-square-twitter" style="font-size: 2.5em;"></i></span></a>
                         </span>
-                        <span>
-                            <a :href="links.insta_link" target="_blank"><span class="instagram"><i class="fa-brands fa-instagram" style="font-size: 2.5em;"></i></span></a>
+                        <span v-show="links.insta_link != null">
+                            <a :href="links.insta_link" title="Instagram" target="_blank"><span class="instagram"><i class="fa-brands fa-instagram" style="font-size: 2.5em;"></i></span></a>
+                        </span>
+                        <span v-show="links.wiki_link != null">
+                            <a :href="links.wiki_link" title="Wikidata" target="_blank"><span class="wikidata"><i class="fa-brands fa-wikipedia-w"></i></span></a>
                         </span>
                     </div>
                     <div class="personal-info">
-                    <h1>Personal Info</h1>
+                    <h3 class="">Personal Info</h3>
                         <div class="known-for ">
                             <strong class="white">Known For</strong>
                             <ul>
@@ -45,7 +48,7 @@
                         <div class="birthday">
                             <strong class="white">Birthday</strong>
                             <ul>
-                                <li >{{ cast_obj.birthday }}</li>
+                                <li >{{ cast_obj.birthday }} ({{ cast_age }} years old)</li>
                             </ul>
                         </div>
                         <div class="place-birth">
@@ -156,8 +159,14 @@
     .known-for li,.known-credit li,.gender li,.birthday li,.place-birth li {
         margin-left: 1vw;
     }
+    .social a {
+        color: white;
+    }
     .biography-text{
         text-indent: 30px;
+    }
+    .fa-wikipedia-w{
+        font-size: 2.5em;
     }
     @media (max-width: 475px) {
         .card-img-top {

@@ -21,6 +21,7 @@ export default {
         twit_link: null,
         insta_link: null,
       },
+      cast_age: null,
       expanded: false,
       showButton: false,
       truncatedBiography: '',
@@ -45,6 +46,7 @@ export default {
         .then(res => res.data)
         .then(data => {
           this.cast_obj = data;
+          this.cast_age = this.calculateAge(this.cast_obj.birthday);
           // Check if the biography text exceeds a certain length to determine if the "Show More" button is necessary
           this.showButton = this.cast_obj.biography.length > 500;
 
@@ -61,9 +63,19 @@ export default {
         .then(res => res.data)
         .then(data => {
           this.social_obj = data;
-          this.links.fb_link = "https://www.facebook.com/" + this.social_obj.facebook_id;
-          this.links.twit_link = "https://www.twitter.com/" + this.social_obj.twitter_id;
-          this.links.insta_link = "https://www.instagram.com/" + this.social_obj.instagram_id;
+          if (this.social_obj.facebook_id != null && this.social_obj.facebook_id != "") {
+            this.links.fb_link = "https://www.facebook.com/" + this.social_obj.facebook_id;
+          }
+          if (this.social_obj.twitter_id != null && this.social_obj.twitter_id != "") {
+            this.links.twit_link = "https://www.twitter.com/" + this.social_obj.twitter_id;
+          }
+          if (this.social_obj.instagram_id != null && this.social_obj.instagram_id != "") {
+            this.links.insta_link = "https://www.instagram.com/" + this.social_obj.instagram_id;
+          }
+          if (this.social_obj.wikidata_id != null && this.social_obj.wikidata_id != "") {
+            this.links.wiki_link = "https://www.wikidata.org/wiki/" + this.social_obj.wikidata_id;
+          }
+
 
        
         })
@@ -72,8 +84,19 @@ export default {
         });
     },
     toggleExpanded() {
-      // alert(this.expanded);
       this.expanded = !this.expanded;
+    },
+    calculateAge(birthdate) {
+      const today = new Date();
+      const birthDate = new Date(birthdate);
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const monthDiff = today.getMonth() - birthDate.getMonth();
+
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+
+      return age;
     },
     toDetail(id) {
         this.movie_id = id;

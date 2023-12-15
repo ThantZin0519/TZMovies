@@ -38,13 +38,13 @@
                       <ul class="pagination">
                         <li class="page-item" :class="{ disabled: page === 1 }">
                           <a class="page-link" href="#" aria-label="First" @click="goToFirstPage">
-                               <span aria-hidden="true">&laquo;</span>
+                              <i class="fa-solid fa-angles-left"></i>
                           </a>
                         </li>
 
                         <li class="page-item" :class="{ disabled: page === 1 }">
                           <a class="page-link" href="#" aria-label="Previous" @click="prevPage">
-                           prev
+                              <i class="fa-solid fa-chevron-left"></i>
                           </a>
                         </li>
 
@@ -54,13 +54,13 @@
 
                         <li class="page-item" :class="{ disabled: page === totalPages }">
                           <a class="page-link" href="#" aria-label="Next" @click="nextPage">
-                           next
+                              <i class="fa-solid fa-chevron-right"></i>
                           </a>
                         </li>
 
                         <li class="page-item" :class="{ disabled: page === totalPages }">
                           <a class="page-link" href="#" aria-label="Last" @click="goToLastPage">
-                            <span aria-hidden="true">&raquo;</span>
+                            <i class="fa-solid fa-angles-right"></i>
                             </a>
                         </li>
                       </ul>

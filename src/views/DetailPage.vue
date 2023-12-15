@@ -40,7 +40,7 @@
                         </div>                         
                         <!-- circular progress end  -->
                     <div class="movie-details">
-                        <h2 class="white">{{ movie.title }} ( {{ date_slice }} )</h2>
+                        <h2 class="white">{{ movie.title }}({{ date_slice }})</h2>
                         <div class="overview white">
                             <p>{{ movie.overview }}</p>
                         </div>
@@ -53,14 +53,13 @@
                             </div>
                             <div class="productions production-companies white">
                                 <strong>Production Companies:</strong>
-                                <!-- original start  -->
                                 <ul>
                                     <li v-for="company in movie.production_companies" :key="company.id">
                                         <div class="row company-loop">
                                             <div class="col-3">
-                                                <img v-if="company.logo_path"
+                                                <img 
                                                     :src="'https://image.tmdb.org/t/p/w200' + company.logo_path"
-                                                    :alt="company.name + ' Logo'" class="company-logo"
+                                                     class="company-logo"
                                                     style="width:40px;height:40px;">
                                             </div>
                                             <div class="col-9 ">
@@ -70,7 +69,6 @@
 
                                     </li>
                                 </ul>
-                                original end 
                             </div>
                             <div class="release-details white">
                                 <strong>Release Date:</strong> {{ movie.release_date }}
@@ -88,12 +86,13 @@
                     <!-- navigation -->
                 <swiper 
                     :modules="modules"
-                    
                     :slides-per-view="slide_per_view" :space-between="50" @swiper="onSwiper"
                     @slideChange="onSlideChange" :autoplay="true">
                     <swiper-slide v-for="(cast, index) in casts" :key="index">
                         <div class="cast-details" @click="toCastDetail(cast.id)">
                             <img v-if="cast.profile_path" :src="'https://image.tmdb.org/t/p/w200' + cast.profile_path"
+                                :alt="cast.name + ' Profile'" class="profile-image">
+                            <img v-else src="../../public/assets/images/default.jpg"
                                 :alt="cast.name + ' Profile'" class="profile-image">
                             <div class="cast-info">
                                 <h4>{{ cast.name }}</h4>
@@ -285,6 +284,8 @@ movie-poster img {
 .cast-details {
     display: flex;
     align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
     margin-bottom: 20px;
 }
 
