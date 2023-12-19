@@ -68,7 +68,7 @@ export default {
             // alert(this.query);
             sessionStorage.setItem('query', this.query);
             // sessionStorage.setItem('page', 1);
-            router.push({ path: '/SearchPage', query: { query: this.query } })
+            router.push({ path: '/SearchPage', query: { query: this.query, p: 1 } })
         }
     },
 
@@ -92,9 +92,11 @@ export default {
     top: 0;
     z-index: 1000;
 }
+
 .wrapper {
     background-color: #2d333a;
 }
+
 .for-main-content {
     display: flex;
     padding-top: 12vh;

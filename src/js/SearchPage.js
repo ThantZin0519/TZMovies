@@ -48,39 +48,47 @@ export default {
     changePage(pageNumber) {
       if (pageNumber >= 1 && pageNumber <= this.totalPages) {
         this.page = pageNumber;
-        this.getMovies();
+        // this.getMovies();
+        this.gotoSearchPage();
       }
     },
 
     prevPage() {
       if (this.page > 1) {
         this.page--;
-        this.getMovies();
+        // this.getMovies();
+        this.gotoSearchPage();
       }
     },
 
     nextPage() {
       if (this.page < this.totalPages) {
         this.page++;
-        this.getMovies();
+        // this.getMovies();
+        this.gotoSearchPage();
       }
     },
     goToFirstPage() {
       if (this.page !== 1) {
         this.page = 1;
-        this.getMovies();
+        // this.getMovies();
+        this.gotoSearchPage();
       }
     },
 
     goToLastPage() {
       if (this.page !== this.totalPages) {
         this.page = this.totalPages;
-        this.getMovies();
+        // this.getMovies();
+        this.gotoSearchPage();
       }
     },
     toDetail(id) {
         this.movie_id = id;
         router.push({ path: '/DetailPage', query: { movie_id: this.movie_id } })
+    },
+    gotoSearchPage(){
+      router.push({ path: '/SearchPage', query: { query: this.query , p : this.page } })
     },
   },
   watch: {
@@ -94,6 +102,7 @@ export default {
         // alert("old query " + this.query);
         let old_query = this.query;
         this.query = this.$route.query.query;
+        // this.page = this.$route.query.p; 
         // alert("new query " + this.query);
         if (old_query != this.query) {
           this.page = 1;
@@ -108,6 +117,8 @@ export default {
         behavior: 'smooth'
       });
       this.query = this.$route.query.query;
+      this.page = this.$route.query.p;
+      // alert(this.page);
       this.getMovies();
   },
 
